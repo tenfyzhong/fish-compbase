@@ -348,5 +348,5 @@ function __compbase_conf_help
         '  -h/--help            print this help message'\
         ''\
         'Conf:'\
-        '  max_item: item count for a topic'
+        '  max_item: item count for a topic, default:100'
 end
