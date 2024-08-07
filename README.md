@@ -3,6 +3,9 @@ compbase is a fishshell tool to manage dynamic completions.
 
 You can use this tool to add completion items dynamic, and then use to provide the completion items.
 
+# dependencies
+- sqlite3
+
 # Usage
 The `compbase` has three subcommands: `topic`, `item`, `conf`.
 
