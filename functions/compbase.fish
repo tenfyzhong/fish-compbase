@@ -87,6 +87,10 @@ function __compbase_topic_add
     end
 
     for topic in $argv
+        if test -z "$topic"
+            continue
+        end
+
         set file (__compbase_file_of_topic "$topic")
         if test -f "$file"
             continue
@@ -194,6 +198,9 @@ function __compbase_item_add -a topic -a description
     set now (date +%s)
     set now (string trim $now)
     for item in $items
+        if test -z "$item"
+            continue
+        end
         # format item
         set item (string replace '	' ' ' $item)
         sqlite3 "$file" "INSERT OR REPLACE INTO compitem(id, item, desc, update_time) VALUES((SELECT id FROM compitem WHERE item='$item'), '$item', '$description', $now)"

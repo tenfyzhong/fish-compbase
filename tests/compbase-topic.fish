@@ -43,3 +43,9 @@ init
 compbase topic -a foo bar
 @test 'test move target exist' (compbase topic -m foo bar) $status = 13
 deinit
+
+init
+compbase topic -a ''
+set topics (compbase topic -l | string collect)
+@test 'test add empty topic' "$topics" = ''
+deinit

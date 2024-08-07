@@ -58,4 +58,12 @@ set item (compbase item -t foomax1 -l | string collect)
 compbase item -t footab -D 'foo	bar' -a 'foo	hello'
 set item (compbase item -t footab -l | string collect)
 @test 'has tab' "$item" = "foo hello	foo bar"
+
+compbase item -t empty -D '' -a ''
+set item (compbase item -t empty -l | string collect)
+@test 'add empty item 1' "$item" = ""
+
+compbase item -t empty -D 'foo	bar' -a ''
+set item (compbase item -t empty -l | string collect)
+@test 'add empty item 1' "$item" = ""
 deinit
