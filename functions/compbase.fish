@@ -181,7 +181,7 @@ end
 function __compbase_item_list -a topic
     set file (__compbase_file_of_topic "$topic")
     # separator is \t which will sperate the completion item and description
-    sqlite3 -separator "	" "$file"  'SELECT item,desc FROM compitem ORDER BY update_time DESC, id DESC'
+    sqlite3 -separator "	" "$file"  'SELECT item,desc FROM compitem ORDER BY update_time DESC, id DESC' | string unescape --style=url
 end
 
 function __compbase_item_add -a topic -a description
@@ -203,6 +203,7 @@ function __compbase_item_add -a topic -a description
         end
         # format item
         set item (string replace '	' ' ' $item)
+        set item (string escape --style=url $item)
         sqlite3 "$file" "INSERT OR REPLACE INTO compitem(id, item, desc, update_time) VALUES((SELECT id FROM compitem WHERE item='$item'), '$item', '$description', $now)"
     end
 end

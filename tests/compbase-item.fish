@@ -66,4 +66,9 @@ set item (compbase item -t empty -l | string collect)
 compbase item -t empty -D 'foo	bar' -a ''
 set item (compbase item -t empty -l | string collect)
 @test 'add empty item 1' "$item" = ""
+
+compbase item -t quote -D 'quote' -a "'"
+set item (compbase item -t quote -l | string collect)
+@test "quote 1 item" "$item" = "'	quote"
+
 deinit
