@@ -14,6 +14,11 @@ function compbase --description 'A database to manage completion items'
         return 1
     end
 
+    if not command -q "sqlite3"
+        echo "Install sqlite3 first" >&2
+        return 3
+    end
+
     set -l subcommand $argv[1]
     set -l rest $argv[2..-1]
 
